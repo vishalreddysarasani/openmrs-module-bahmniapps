@@ -181,6 +181,9 @@ angular.module('consultation')
                     }
                 },
                 views: {
+                    "orderSet": {
+                        templateUrl: 'consultation/views/treatmentSections/orderSet.html'
+                    },
                     "addTreatment": {
                         controller: 'AddTreatmentController',
                         templateUrl: 'consultation/views/treatmentSections/addTreatment.html'
