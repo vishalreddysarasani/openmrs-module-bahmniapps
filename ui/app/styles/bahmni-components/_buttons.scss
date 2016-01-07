@@ -446,7 +446,7 @@ input[type="submit"].secondary-button:hover  {
 /* split button - seperate scss file */
 
 
-.refill-btn, .stop-drug-btn { padding: 10px!important; font-family: $primaryBoldFont; color: #666; }
+.refill-btn, .stop-drug-btn ,.edit-drug-btn , .dispense-drug-btn{ padding: 10px!important; font-family: $primaryBoldFont; color: #666; }
 .refill-btn .fa-play { font-size: 1em!important; }
 
 .btn-small {

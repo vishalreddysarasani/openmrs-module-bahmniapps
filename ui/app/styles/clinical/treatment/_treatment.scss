@@ -48,7 +48,7 @@
                 }
             }
         }
-        .refill-btn, .stop-drug-btn {
+        .refill-btn, .stop-drug-btn ,.edit-drug-btn,.dispense-drug-btn {
             padding: 6px!important;
             @media screen and (max-width: 1024px){
                 padding:9px 6px !important
@@ -185,5 +185,6 @@
 }
 
 @import "cutomDrugOrderHistory";
+@import "orderSet";
 
 

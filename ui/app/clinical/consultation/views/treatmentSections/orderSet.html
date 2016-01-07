@@ -1,1 +1,354 @@
-<h1>New Order Set UI</h1>
+<div class="order-set-wrap clearfix order-list">
+    <div class="dashboard-section-wrapper">
+        <section class="orders-section-left">
+            <div class="order-section-container">
+                <div class="Order-section-orderDrug clearfix">
+                    <h2 class="section-title">
+                        <!--<i class="fa fa-caret-right ng-hide" ng-hide="conceptSet.isOpen"></i>-->
+                        <!--<i class="fa fa-caret-down" ng-show="conceptSet.isOpen"></i>-->
+                        <i class="fa fa-caret-down"></i>
+                        <span class="section-label">Order Drug</span>
+                    </h2>
+                    <form class="" name="addForm">
+                        <section class="form-field-inline clearfix">
+                            <article class="form-field">
+                                <div class="field-attribute">
+                                    <label>Drug Name</label>
+                                </div>
+                                <div class="field-value">
+                                    <input type="text" />
+                                     <span>
+                                        <button type="button" class="fl accept-btn" id="accept-button"><span>Accept</span></button>
+                                     </span>
+                                </div>
+                            </article>
+                        </section>
+                        <section class="form-field-inline clearfix">
+                            <article class="form-field">
+                                <div class="field-attribute">
+                                    <label class="dose-label">
+                                        <button type="button" class="icon-button exchange-btn fl" tabindex="-1">
+                                            <i class="fa fa-exchange"></i>
+                                        </button>
+                                        <span class="fl dose-text">
+                                            Dose
+                                        </span>
+                                    </label>
+                                </div>
+                                <div class="field-value">
+                                    <input type="text" />
+                                    <div class="unit-dose">
+                                        <span class="fl unit-text">
+                                            Units
+                                        </span>
+                                        <select id="uniformDoseUnit" class="form-field freq-dose-units" required="required">
+                                            <option value="0" label="Capsule(s)">Capsule(s)</option>
+                                            <option value="1" label="Tablet(s)">Tablet(s)</option>
+                                            <option value="2" label="ml">ml</option>
+                                            <option value="3" label="mg">mg</option>
+                                            <option value="4" label="IU">IU</option>
+                                            <option value="5" label="Drop">Drop</option>
+                                            <option value="6" label="Tablespoon">Tablespoon</option>
+                                            <option value="7" label="Teaspoon">Teaspoon</option>
+                                            <option value="8" label="Unit(s)">Unit(s)</option>
+                                            <option value="9" label="Puff(s)">Puff(s)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </article>
+                        </section>
+                        <section class="form-field-inline clearfix">
+                            <article class="form-field">
+                                <div class="field-attribute">
+                                    <label>Frequency</label>
+                                </div>
+                                <div class="field-value">
+                                    <select>
+                                        <option>Per Day</option>
+                                    </select>
+                                </div>
+                            </article>
+                        </section>
+                        <section class="form-field-inline clearfix">
+                            <article class="form-field">
+                                <div class="field-attribute">
+                                    <label>Duration</label>
+                                </div>
+                                <div class="field-value">
+                                    <input type="text" />
+                                    <div class="unit-dose">
+                                        <span class="fl unit-text">
+                                           Units
+                                        </span>
+                                        <select id="uniform-dose-unit" class="form-field freq-dose-units" required="required">
+                                            <option value="0" label="Capsule(s)">Capsule(s)</option>
+                                            <option value="1" label="Tablet(s)">Tablet(s)</option>
+                                            <option value="2" label="ml">ml</option>
+                                            <option value="3" label="mg">mg</option>
+                                            <option value="4" label="IU">IU</option>
+                                            <option value="5" label="Drop">Drop</option>
+                                            <option value="6" label="Tablespoon">Tablespoon</option>
+                                            <option value="7" label="Teaspoon">Teaspoon</option>
+                                            <option value="8" label="Unit(s)">Unit(s)</option>
+                                            <option value="9" label="Puff(s)">Puff(s)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </article>
+                        </section>
+                        <section class="form-field-inline clearfix">
+                            <article class="form-field">
+                                <div class="field-attribute">
+                                    <label>Start Date</label>
+                                </div>
+                                <div class="field-value">
+                                    <input type="date" />
+                                </div>
+                            </article>
+                        </section>
+                        <h3 class="orderSet-additional-info">Additional Information</h3>
+                        <section class="form-field-inline clearfix">
+                            <article class="form-field">
+                                <div class="field-attribute">
+                                    <label>As Needed</label>
+                                </div>
+                                <div class="field-value">
+                                    <button id="SOS" type="button" class="grid-row-element active" accesskey="o"><i class="fa fa-ok"></i>S<u>O</u>S</button>
+                                </div>
+                            </article>
+                        </section>
+                        <section class="form-field-inline clearfix">
+                            <article class="form-field">
+                                <div class="field-attribute">
+                                    <label>Route</label>
+                                </div>
+                                <div class="field-value">
+                                    <select  id="route" class="route">
+                                        <option value="">Choose Route</option>
+                                    </select>
+                                </div>
+                            </article>
+                        </section>
+                        <section class="form-field-inline clearfix">
+                            <article class="form-field">
+                                <div class="field-attribute">
+                                    <label>Instructions</label>
+                                </div>
+                                <div class="field-value">
+                                    <select class="instruction">
+                                        <option value="">Per Day</option>
+                                    </select>
+                                </div>
+                            </article>
+                        </section>
+                        <section class="form-field-inline clearfix">
+                            <article class="form-field">
+                                <div class="field-attribute">
+                                    <label>Notes</label>
+                                </div>
+                                <div class="field-value">
+                                    <textarea></textarea>
+                                </div>
+                            </article>
+                        </section>
+                        <button class="add-drug-btn secondary-button fr" type="submit" accesskey="a"><u>A</u>dd Drug</button>
+                    </form>
+                </div>
+                <div class="Order-section-orderDrug clearfix">
+                    <h2 class="section-title">
+                        <!--<i class="fa fa-caret-right ng-hide" ng-hide="conceptSet.isOpen"></i>-->
+                        <!--<i class="fa fa-caret-down" ng-show="conceptSet.isOpen"></i>-->
+                        <i class="fa fa-caret-down"></i>
+                        <span class="section-label ng-binding">Order an Order Set</span>
+                    </h2>
+                    <form class="" name="addForm">
+                        <section class="form-field-inline clearfix">
+                            <article class="form-field">
+                                <div class="field-attribute">
+                                    <label>Start Date</label>
+                                </div>
+                                <div class="field-value">
+                                    <input type="date" />
+                                </div>
+                            </article>
+                        </section>
+                        <h2 class="section-title order-set-orderAnOrderSet">
+                            <input type="checkbox" class="order-checkbox">Order an Order Set
+                            <button class="fr orderset-plus">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </h2>
+                        <div class="dashboard-section dashboard-orderSet">
+                           Now we don't want him to get lonely, so we'll give him a little friend. In your imagination you can go
+                        </div>
+                        <h2 class="section-title order-set-orderAnOrderSet">
+                            <input type="checkbox" class="order-checkbox">Order an Order Set
+                            <button class="fr orderset-plus">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </h2>
+                        <div class="dashboard-section dashboard-orderSet">
+                            Now we don't want him to get lonely, so we'll give him a little friend. In your imagination you can go
+                        </div>
+                        <button class="add-drug-btn secondary-button fr" type="submit" accesskey="a"><u>A</u>dd Order Set</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <section class="orders-section-right">
+            <button class="secondary-button fr bulk-toggle-btn ng-scope">Add</button>
+            <button class="secondary-button fr bulk-toggle-btn ng-scope select-all">Select All</button>
+            <section class="order-section-container">
+                <div class="order-grid"  ng-click="">
+                    <h2 class="order-title">
+                        <i class="fa fa-caret-right"></i>
+                        <!--<i class="fa fa-caret-right" ng-show="activeTab != tab"></i>-->
+                        <!--<i class="fa fa-caret-down ng-hide" ng-show="activeTab == tab"></i>-->
+                        Drug Order Set
+                    </h2>
+                </div>
+                <div class="dashboard-section">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th class="drugOrder-checkbox"></th>
+                            <th>Drug Name</th>
+                            <th>Dose (mg)</th>
+                            <th>Frequency</th>
+                            <th>Route</th>
+                            <th>Duration</th>
+                            <th>State Date</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>PAS</td>
+                            <td>200</td>
+                            <td>Once a Day</td>
+                            <td>Oral</td>
+                            <td>2 Days</td>
+                            <td>21/12/2015</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section class="order-section-container">
+                <div class="order-grid">
+                    <h2 class="order-title">
+                        <i class="fa fa-caret-right"></i>
+                        <!--<i class="fa fa-caret-right" ng-show="activeTab != tab"></i>-->
+                        <!--<i class="fa fa-caret-down ng-hide" ng-show="activeTab == tab"></i>-->
+                        New Prescriptions
+                    </h2>
+                </div>
+                <div class="dashboard-section">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Drug Name</th>
+                                <th>Dose (mg)</th>
+                                <th>Frequency</th>
+                                <th>Route</th>
+                                <th>Duration</th>
+                                <th>State Date</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>PAS</td>
+                                <td>200</td>
+                                <td>Once a Day</td>
+                                <td>Oral</td>
+                                <td>2 Days</td>
+                                <td>21/12/2015</td>
+                                <td>
+                                    <div class="button-group-wrapper">
+                                        <div class="button-group">
+                                            <ul>
+                                                <li class="edit-drug-btn button">
+                                                    Edit
+                                                </li>
+                                                <li class="stop-drug-btn button">
+                                                    Remove
+                                                </li>
+                                                <li class="refill-btn button">
+                                                    Refill
+                                                </li>
+                                                <li>
+                                                    <i class="fa fa-plus-circle"></i>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <button class="secondary-button fr">Refill All</button>
+            <button class="secondary-button fr dispense-all-btn-order-set">Dispense All</button>
+            <section class="order-section-container">
+                <div class="order-grid clearfix">
+                    <h2 class="order-title">
+                        <i class="fa fa-caret-right"></i>
+                        <!--<i class="fa fa-caret-right" ng-show="activeTab != tab"></i>-->
+                        <!--<i class="fa fa-caret-down ng-hide" ng-show="activeTab == tab"></i>-->
+                       Active Prescriptions
+                    </h2>
+                </div>
+                <div class="dashboard-section clearfix">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Drug Name</th>
+                            <th>Dose (mg)</th>
+                            <th>Frequency</th>
+                            <th>Route</th>
+                            <th>Duration</th>
+                            <th>State Date</th>
+                            <th>Dispense</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>PAS</td>
+                            <td>200</td>
+                            <td>Once a Day</td>
+                            <td>Oral</td>
+                            <td>2 Days</td>
+                            <td>21/12/2015</td>
+                            <td>
+                                <div class="button-group-wrapper">
+                                    <div class="button-group">
+                                        <ul>
+                                            <li class="dispense-drug-btn button">
+                                                D
+                                            </li>
+                                            <li class="edit-drug-btn button">
+                                                Edit
+                                            </li>
+                                            <li class="stop-drug-btn button">
+                                               Stop
+                                            </li>
+                                            <li class="refill-btn button">
+                                               Refill
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-plus-circle"></i>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </section>
+    </div>
+</div>
