@@ -17,4 +17,8 @@ angular.module('bahmni.common.uiHelper')
     return function (date) {
         return Bahmni.Common.Util.DateUtil.formatTime(date);
     }
-});
+}).filter('bahmniDateWithoutTime', function(){
+        return function (date){
+            return Bahmni.Common.Util.DateUtil.getDateWithoutTime(date);
+        }
+    });

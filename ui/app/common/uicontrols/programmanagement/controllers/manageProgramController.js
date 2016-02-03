@@ -11,6 +11,9 @@ angular.module('bahmni.common.uicontrols.programmanagment')
             $scope.outComesForProgram = [];
             $scope.configName = $stateParams.configName;
             $scope.today = DateUtil.getDateWithoutTime(DateUtil.now());
+            $scope.patientState = {};
+            $scope.patientState.stateChangeDate = DateUtil.getDate(DateUtil.now());
+            //$scope.patientState.stateChangeDate = new Date((new Date()).setDate((new Date()).getDate() - 1));
 
             var updateActiveProgramsList = function () {
                 spinner.forPromise(programService.getPatientPrograms($scope.patient.uuid).then(function (programs) {
@@ -22,10 +25,16 @@ angular.module('bahmni.common.uicontrols.programmanagment')
                 }));
             };
 
-            var getCurrentDate = function () {
-                var retrospectiveDate = retrospectiveEntryService.getRetrospectiveDate();
-                return DateUtil.parseLongDateToServerFormat(retrospectiveDate) || DateUtil.parse(DateUtil.now()) ;
+            var getStateChangeDate = function () {
+                var currentDate = DateUtil.getDateWithoutTime($scope.patientState.stateChangeDate);
+                return DateUtil.parseLongDateToServerFormat(currentDate) ;
             };
+
+             var getEndDateForProgram = function () {
+                 var endDate = DateUtil.getDateWithoutTime(DateUtil.now());
+                 var retrospectiveDate = retrospectiveEntryService.getRetrospectiveDate();
+                 return DateUtil.parseLongDateToServerFormat(retrospectiveDate) || DateUtil.parseLongDateToServerFormat(endDate);
+             };
 
             var init = function () {
                 spinner.forPromise(programService.getAllPrograms().then(function(programs) {
@@ -147,10 +156,9 @@ angular.module('bahmni.common.uicontrols.programmanagment')
             };
 
             $scope.savePatientProgramStates = function (patientProgram) {
-                var startDate = getCurrentDate();
+                //var startDate = getStateChangeDate();
                 var currentState = getCurrentState(patientProgram.states);
                 var currentStateDate = currentState ? DateUtil.parse(currentState.startDate) : null;
-
                 if (DateUtil.isBeforeDate(startDate, currentStateDate)) {
                     var formattedCurrentStateDate = DateUtil.formatDateWithoutTime(currentStateDate);
                     messagingService.showMessage("formError", "State cannot be started earlier than current state (" + formattedCurrentStateDate + ")");
@@ -181,7 +189,7 @@ angular.module('bahmni.common.uicontrols.programmanagment')
             };
 
             $scope.endPatientProgram = function (patientProgram) {
-                var dateCompleted = getCurrentDate();
+                var dateCompleted = getEndDateForProgram();
                 var currentState = getCurrentState(patientProgram.states);
                 var currentStateDate = currentState ? DateUtil.parse(currentState.startDate) : null;
 

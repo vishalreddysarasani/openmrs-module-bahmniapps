@@ -70,6 +70,8 @@
                         ng-options="state.concept.display for state in workflowStatesWithoutCurrentState track by state.uuid">
                     <option value="">{{'PROGRAM_MANAGEMENT_CHOOSE_STATE_KEY' | translate}}</option>
                 </select>
+                {{patientState.stateChangeDate}}
+                <input type="date"  ng-model="patientState.stateChangeDate" max="{{today}}" ng-required="true"/><span class="asterick">*</span>
                 <button class="fr ok_btn" ng-click="savePatientProgramStates(patientProgram)">{{'PROGRAM_MANAGEMENT_CHANGE_STATE_KEY' | translate}}</button>
             </div>
             <div class="program-action-container form" ng-init="outComesForProgram = getOutcomes(patientProgram.program)">

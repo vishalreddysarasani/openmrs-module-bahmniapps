@@ -12,13 +12,13 @@ describe("ManageProgramController", function () {
 
         programService.getPatientPrograms.and.callFake(function () {
             deferred = q.defer();
-            deferred.resolve(listOfPrograms);
+            deferred.resolve(listOfPatientPrograms);
             return deferred.promise;
         });
 
         programService.savePatientProgramStates.and.callFake(function () {
             deferred = q.defer();
-            deferred.resolve({data: {results: listOfPrograms}});
+            deferred.resolve({data: {results: listOfPatientPrograms}});
             return deferred.promise;
         });
 
@@ -30,13 +30,13 @@ describe("ManageProgramController", function () {
 
         programService.endPatientProgram.and.callFake(function () {
             deferred = q.defer();
-            deferred.resolve({data: {results: listOfPrograms}});
+            deferred.resolve({data: {results: listOfPatientPrograms}});
             return deferred.promise;
         });
 
         programService.deletePatientState.and.callFake(function () {
             deferred = q.defer();
-            deferred.resolve({data: {results: listOfPrograms}});
+            deferred.resolve({data: {results: listOfPatientPrograms}});
             return deferred.promise;
         });
 
@@ -48,7 +48,7 @@ describe("ManageProgramController", function () {
 
         programService.updatePatientProgram.and.callFake(function() {
             deferred = q.defer();
-            deferred.resolve({data: {results: listOfPrograms}});
+            deferred.resolve({data: {results: listOfPatientPrograms}});
             return deferred.promise;
         });
 
@@ -107,13 +107,13 @@ describe("ManageProgramController", function () {
 
         it("should remove latest program state", function () {
             scope.$apply(setUp);
-            scope.removePatientState(listOfPrograms.activePrograms[0]);
-            expect(programService.deletePatientState).toHaveBeenCalledWith(listOfPrograms.activePrograms[0].uuid, listOfPrograms.activePrograms[0].states[1].uuid);
+            scope.removePatientState(listOfPatientPrograms.activePrograms[0]);
+            expect(programService.deletePatientState).toHaveBeenCalledWith(listOfPatientPrograms.activePrograms[0].uuid, listOfPatientPrograms.activePrograms[0].states[1].uuid);
         });
 
         it("should be able to remove program state when it is the active state", function () {
             scope.$apply(setUp);
-            expect(scope.canRemovePatientState(listOfPrograms.activePrograms[0].states[1])).toBeTruthy();
+            expect(scope.canRemovePatientState(listOfPatientPrograms.activePrograms[0].states[1])).toBeTruthy();
         });
     });
 
@@ -122,7 +122,7 @@ describe("ManageProgramController", function () {
     describe("updatePatientProgram", function () {
         it("should validate if state to be transited is starting after the current running state", function () {
             scope.$apply(setUp);
-            var programToBeUpdated = listOfPrograms.activePrograms[0];
+            var programToBeUpdated = listOfPatientPrograms.activePrograms[0];
             programToBeUpdated.patientProgramAttributes = {"locationName":"Loc1"};
 
 
@@ -137,11 +137,11 @@ describe("ManageProgramController", function () {
     describe("savePatientProgramStates", function () {
         it("should validate if state to be transited is starting after the current running state", function () {
             scope.$apply(setUp);
-            var programToBeUpdated = listOfPrograms.activePrograms[0];
-            retrospectiveEntryService.getRetrospectiveDate.and.callFake(function(){
-                    return '2015-07-12';
-            });
+            var programToBeUpdated = listOfPatientPrograms.activePrograms[0];
 
+            scope.programEdited={selectedState : {uuid: '1317ab09-52b4-4573-aefa-7f6e7bdf6d61'}};
+
+            scope.patientState.stateChangeDate = "2015-07-12";
             scope.savePatientProgramStates(programToBeUpdated);
 
             expect(messageService.showMessage).toHaveBeenCalledWith("formError", "State cannot be started earlier than current state (15 Jul 15)");
@@ -149,7 +149,7 @@ describe("ManageProgramController", function () {
 
         it("should validate if state to be transited not selected", function(){
             scope.$apply(setUp);
-            var programToBeUpdated = listOfPrograms.activePrograms[0];
+            var programToBeUpdated = listOfPatientPrograms.activePrograms[0];
             retrospectiveEntryService.getRetrospectiveDate.and.callFake(function () {
                 return '2015-07-19';
 
@@ -163,7 +163,7 @@ describe("ManageProgramController", function () {
 
         it("should transit from one state to another successfully", function(){
             scope.$apply(setUp);
-            var programToBeUpdated = listOfPrograms.activePrograms[0];
+            var programToBeUpdated = listOfPatientPrograms.activePrograms[0];
             retrospectiveEntryService.getRetrospectiveDate.and.callFake(function(){
                     return '2015-07-19';
 
@@ -177,7 +177,7 @@ describe("ManageProgramController", function () {
 
         it("should show failure message on any server error with state transition", function(){
             scope.$apply(setUp);
-            var programToBeUpdated = listOfPrograms.activePrograms[0];
+            var programToBeUpdated = listOfPatientPrograms.activePrograms[0];
             retrospectiveEntryService.getRetrospectiveDate.and.callFake(function(){
                     return '2015-07-19';
 
@@ -200,7 +200,7 @@ describe("ManageProgramController", function () {
 
         it("should validate if program is ending before the current running state", function(){
             scope.$apply(setUp);
-            var programToBeUpdated = listOfPrograms.activePrograms[0];
+            var programToBeUpdated = listOfPatientPrograms.activePrograms[0];
             retrospectiveEntryService.getRetrospectiveDate.and.callFake(function(){
                     return '2015-07-12';
             });
@@ -212,7 +212,7 @@ describe("ManageProgramController", function () {
 
         it('should not end the program and validate if ouctome is not selected on ending the program', function(){
             scope.$apply(setUp);
-            var programToBeUpdated = listOfPrograms.activePrograms[0];
+            var programToBeUpdated = listOfPatientPrograms.activePrograms[0];
             retrospectiveEntryService.getRetrospectiveDate.and.callFake(function(){
                     return '2015-07-19';
             });
@@ -225,9 +225,9 @@ describe("ManageProgramController", function () {
 
         it('should end a program successfully', function(){
             scope.$apply(setUp);
-            var programToBeUpdated = listOfPrograms.activePrograms[0];
+            var programToBeUpdated = listOfPatientPrograms.activePrograms[0];
             retrospectiveEntryService.getRetrospectiveDate.and.callFake(function(){
-                    return '2015-07-19';
+                    return 'null';
             });
             programToBeUpdated.outcomeData = {uuid: 'outcome-uuid'};
 
@@ -241,7 +241,7 @@ describe("ManageProgramController", function () {
     describe('setOutcomes', function(){
         it('should fetch outcomes of the program', function(){
             scope.$apply(setUp);
-            var program = listOfPrograms.activePrograms[0].program;
+            var program = listOfPatientPrograms.activePrograms[0].program;
 
             var outcomes = scope.getOutcomes(program);
 
@@ -252,7 +252,7 @@ describe("ManageProgramController", function () {
     describe('getWorkflowStatesWithoutCurrent', function(){
         it('should fetch states of the program excluding current patient state', function(){
             scope.$apply(setUp);
-            var patientProgram = listOfPrograms.activePrograms[0];
+            var patientProgram = listOfPatientPrograms.activePrograms[0];
 
             var states = scope.getWorkflowStatesWithoutCurrent(patientProgram);
 
@@ -260,7 +260,7 @@ describe("ManageProgramController", function () {
         });
         it('should fetch all states of the program if patient is currently stateless', function(){
             scope.$apply(setUp);
-            var patientProgram = listOfPrograms.activePrograms[0];
+            var patientProgram = listOfPatientPrograms.activePrograms[0];
             patientProgram.states =[];
 
             var states = scope.getWorkflowStatesWithoutCurrent(patientProgram);
@@ -346,7 +346,8 @@ describe("ManageProgramController", function () {
             ]
         }
     ];
-    var listOfPrograms = {
+
+    var listOfPatientPrograms = {
 
         "activePrograms":[{
             "display": "program",
@@ -469,6 +470,7 @@ describe("ManageProgramController", function () {
             }
         }]
     };
+
     var programAttributeTypes = [{
         uuid: '82325788-3f10-11e4-adec-0800271c1b75',
         sortWeight: 3,
@@ -477,7 +479,8 @@ describe("ManageProgramController", function () {
         format: 'java.lang.String',
         answers: [],
         required: false
-    }, {
+    },
+        {
         uuid: '82325788-3f10-11es-adec-0800271c1b75',
         sortWeight: 3,
         name: 'mandatory',
