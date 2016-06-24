@@ -61,18 +61,23 @@
                         <div ng-include src="'../common/concept-set/views/observationDataTypes/buttonSelectType.html'"></div>
                     </div>
 
+                    <div ng-switch-when="autocompleteMultiSelect" class="autocomplete">
+                        <input type="text" class="form-control" id="tokenInput" observation="observation" coded-answers="observation.getPossibleAnswers()" multi-select="true" token-input/>
+                        <!--<input ng-change="handleUpdate()"-->
+                               <!--ng-disabled="observation.disabled"-->
+                               <!--ng-model="observation.value"-->
+                               <!--concept-autocomplete-->
+                               <!--previous-value="observation.value"-->
+                               <!--answers-concept-name="::observation.conceptUIConfig.answersConceptName"-->
+                               <!--default-concept="observation.primaryObs.concept"-->
+                               <!--strict-select="::true"-->
+                               <!--ng-class="{-->
+                                    <!--'computed-field': observation.isComputedAndEditable()-->
+                               <!--}"/>-->
+                    </div>
+
                     <div ng-switch-when="autocomplete" class="autocomplete">
-                        <input ng-change="handleUpdate()"
-                               ng-disabled="observation.disabled"
-                               ng-model="observation.value"
-                               concept-autocomplete
-                               previous-value="observation.value"
-                               answers-concept-name="::observation.conceptUIConfig.answersConceptName"
-                               default-concept="observation.primaryObs.concept"
-                               strict-select="::true"
-                               ng-class="{
-                                    'computed-field': observation.isComputedAndEditable()
-                               }"/>
+                        <input type="text" class="form-control" id="tokenInput" observation="observation" coded-answers="observation.getPossibleAnswers()" multi-select="false" token-input/>
                     </div>
 
                     <p ng-switch-default class="field-value info fa fa-info-sign"> The concept data type
@@ -226,19 +231,26 @@
                         </concept-dropdown>
                     </div>
 
-                    <div ng-switch-when="autocomplete">
-                        <input ng-change="handleUpdate()"
-                               ng-disabled="observation.disabled"
-                               ng-model="observation.autocompleteValue"
-                               concept-autocomplete
-                               previous-value="observation.autocompleteValue"
-                               answers-concept-name="::observation.conceptUIConfig.answersConceptName"
-                               default-concept="::observation.concept"
-                               strict-select="true"
-                               ng-class="{
-                                    'computed-field': observation.isComputedAndEditable()
-                               }"/>
+                    <div ng-switch-when="autocompleteMultiSelect">
+                        <input  type="text" class="form-control" id="tokeninput" observation="observation" coded-answers="observation.getPossibleAnswers()" multi-select="true" token-input />
+
+                        <!--<input ng-change="handleUpdate()"-->
+                               <!--ng-disabled="observation.disabled"-->
+                               <!--ng-model="observation.autocompleteValue"-->
+                               <!--concept-autocomplete-->
+                               <!--previous-value="observation.autocompleteValue"-->
+                               <!--answers-concept-name="::observation.conceptUIConfig.answersConceptName"-->
+                               <!--default-concept="::observation.concept"-->
+                               <!--strict-select="true"-->
+                               <!--ng-class="{-->
+                                    <!--'computed-field': observation.isComputedAndEditable()-->
+                               <!--}"/>-->
                     </div>
+
+                    <div ng-switch-when="autocomplete">
+                        <input type="text" class="form-control" id="tokeninput" observation="observation" coded-answers="observation.getPossibleAnswers()" multi-select="false" token-input/>
+                    </div>
+
 
                     <p ng-switch-default class="field-value info fa fa-info-sign"> The concept data type
                         '{{::observation.dataTypeName}}' is not supported yet.</p>

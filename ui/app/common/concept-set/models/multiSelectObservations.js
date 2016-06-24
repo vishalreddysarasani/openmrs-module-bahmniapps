@@ -101,7 +101,12 @@ Bahmni.ConceptSet.MultiSelectObservation = function (concept, memberOfCollection
     };
 
     this.getControlType = function(){
-        return "buttonselect";
+        var conceptConfig = this.getConceptUIConfig();
+        if(conceptConfig.autocomplete === true && conceptConfig.multiSelect === true)
+            return "autocompleteMultiSelect";
+        // else if(conceptConfig.autocomplete == true && !conceptConfig.multiSelect)
+        //     return "autocomplete";
+        return  "buttonselect";
     };
 
     this.atLeastOneValueSet = function() {
