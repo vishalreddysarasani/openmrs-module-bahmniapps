@@ -20,8 +20,8 @@ angular.module('bahmni.common.conceptSet')
             link: function (scope, element, attrs) {
                 setDisplayString(scope.codedAnswers);
                 var selectedValues = getSelectedValues(scope.observation);
-                var unselectedValues = _.without(scope.codedAnswers, selectedValues);
-                element.tokenInput(unselectedValues,{
+                var codedAnswersNames = _.map(scope.codedAnswers,"displayString");
+                element.tokenInput(scope.codedAnswers,{
                     theme: "facebook",
                     noResultsText: "Nothing found.",
                     propertyToSearch : "displayString",
@@ -31,7 +31,6 @@ angular.module('bahmni.common.conceptSet')
                     minChars : 2,
                     tokenLimit : scope.multiSelect ? null : 1,
                     onAdd : function(item){
-                        unselectedValues = _.pullAllBy(unselectedValues, [{"uuid" : item.uuid}], 'uuid');
                         scope.observation.toggleSelection(item);
                         if (scope.$parent.observation && typeof scope.$parent.observation.onValueChanged == 'function') {
                             scope.$parent.observation.onValueChanged();
@@ -46,13 +45,26 @@ angular.module('bahmni.common.conceptSet')
                         scope.$parent.handleUpdate();
                     }
                 });
+                $("input").keyup(function(){
+                    var value = $(this).val();
+                    var valueFound = false;
+                    if(value.length >= 2){
+                        _.forEach(codedAnswersNames, function(answer){
+                            if(_.findIndex(answer, value) == -1){
+                                valueFound = true;
+                            }
+                        });
+                    }
+                    if(!valueFound){
+                       element.addClass('illegalValue');
+                    }
+                })
             },
             scope: {
                 observation: '=',
                 codedAnswers : '=',
                 multiSelect: '='
             }
-
         };
 
 
