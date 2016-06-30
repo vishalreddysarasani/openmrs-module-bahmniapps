@@ -50,14 +50,19 @@ angular.module('bahmni.common.conceptSet')
                     var valueFound = false;
                     if(value.length >= 2){
                         _.forEach(codedAnswersNames, function(answer){
-                            if(_.findIndex(answer, value) == -1){
+                            if(answer.toLowerCase().indexOf(value) != -1){
                                 valueFound = true;
+                                return valueFound;
                             }
                         });
+                        if(valueFound == false){
+                            $('.token-input-list-facebook').addClass('illegalValue');
+                        }
                     }
-                    if(!valueFound){
-                       element.addClass('illegalValue');
+                    if(value == ''  || valueFound == true ) {
+                        $('.token-input-list-facebook').removeClass('illegalValue');
                     }
+
                 })
             },
             scope: {
