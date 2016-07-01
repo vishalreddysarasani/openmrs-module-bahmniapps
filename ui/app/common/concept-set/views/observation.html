@@ -61,22 +61,11 @@
                         <div ng-include src="'../common/concept-set/views/observationDataTypes/buttonSelectType.html'"></div>
                     </div>
 
-                    <div ng-switch-when="autocompleteMultiSelect" class="autocomplete" ng-class="{'illegalValue': !observation.isValid(atLeastOneValueIsSet, conceptSetRequired)}">
+                    <div ng-switch-when="autocompleteMultiSelect" ng-class="{'illegalValue': !observation.isValid(atLeastOneValueIsSet, conceptSetRequired)}">
                         <input type="text" class="form-control" id="tokenInput" observation="observation" coded-answers="observation.getPossibleAnswers()" multi-select="true" token-input/>
-                        <!--<input ng-change="handleUpdate()"-->
-                               <!--ng-disabled="observation.disabled"-->
-                               <!--ng-model="observation.value"-->
-                               <!--concept-autocomplete-->
-                               <!--previous-value="observation.value"-->
-                               <!--answers-concept-name="::observation.conceptUIConfig.answersConceptName"-->
-                               <!--default-concept="observation.primaryObs.concept"-->
-                               <!--strict-select="::true"-->
-                               <!--ng-class="{-->
-                                    <!--'computed-field': observation.isComputedAndEditable()-->
-                               <!--}"/>-->
                     </div>
 
-                    <div ng-switch-when="autocomplete" class="autocomplete">
+                    <div ng-switch-when="autocomplete">
                         <input type="text" class="form-control" id="tokenInput" observation="observation" coded-answers="observation.getPossibleAnswers()" multi-select="false" token-input />
                     </div>
 
@@ -233,18 +222,6 @@
 
                     <div ng-switch-when="autocompleteMultiSelect" ng-class="{'illegalValue': !observation.isValid(atLeastOneValueIsSet, conceptSetRequired)}">
                         <input  type="text" class="form-control" id="tokeninput" observation="observation" coded-answers="observation.getPossibleAnswers()" multi-select="true" token-input />
-
-                        <!--<input ng-change="handleUpdate()"-->
-                               <!--ng-disabled="observation.disabled"-->
-                               <!--ng-model="observation.autocompleteValue"-->
-                               <!--concept-autocomplete-->
-                               <!--previous-value="observation.autocompleteValue"-->
-                               <!--answers-concept-name="::observation.conceptUIConfig.answersConceptName"-->
-                               <!--default-concept="::observation.concept"-->
-                               <!--strict-select="true"-->
-                               <!--ng-class="{-->
-                                    <!--'computed-field': observation.isComputedAndEditable()-->
-                               <!--}"/>-->
                     </div>
 
                     <div ng-switch-when="autocomplete">
