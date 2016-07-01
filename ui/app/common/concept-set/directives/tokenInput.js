@@ -20,7 +20,8 @@ angular.module('bahmni.common.conceptSet')
             link: function (scope, element, attrs) {
                 setDisplayString(scope.codedAnswers);
                 var selectedValues = getSelectedValues(scope.observation);
-                var codedAnswersNames = _.map(scope.codedAnswers,"displayString");
+                var unselectedValues = _.xorBy(scope.codedAnswers, selectedValues, 'uuid');
+                var unselectedValuesNames = _.map(unselectedValues,"displayString");
                 element.tokenInput(scope.codedAnswers,{
                     theme: "facebook",
                     noResultsText: "Nothing found.",
@@ -31,6 +32,8 @@ angular.module('bahmni.common.conceptSet')
                     minChars : 2,
                     tokenLimit : scope.multiSelect ? null : 1,
                     onAdd : function(item){
+                        unselectedValues = _.pullAllBy(unselectedValues, [{"uuid" : item.uuid}], 'uuid');
+                        unselectedValuesNames = _.map(unselectedValues,"displayString");
                         scope.observation.toggleSelection(item);
                         if (scope.$parent.observation && typeof scope.$parent.observation.onValueChanged == 'function') {
                             scope.$parent.observation.onValueChanged();
@@ -38,6 +41,8 @@ angular.module('bahmni.common.conceptSet')
                         scope.$parent.handleUpdate();
                     },
                     onDelete : function(item){
+                        unselectedValues.push(item);
+                        unselectedValuesNames.push(item.displayString);
                         scope.observation.toggleSelection(item);
                         if (scope.$parent.observation && typeof scope.$parent.observation.onValueChanged == 'function') {
                             scope.$parent.observation.onValueChanged();
@@ -49,7 +54,7 @@ angular.module('bahmni.common.conceptSet')
                     var value = $(this).val();
                     var valueFound = false;
                     if(value.length >= 2){
-                        _.forEach(codedAnswersNames, function(answer){
+                        _.forEach(unselectedValuesNames, function(answer){
                             if(answer.toLowerCase().indexOf(value) != -1){
                                 valueFound = true;
                                 return valueFound;
