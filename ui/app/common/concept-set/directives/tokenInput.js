@@ -44,19 +44,23 @@ angular.module('bahmni.common.conceptSet')
                         }
                         scope.$parent.handleUpdate();
                     }
+
                 });
-                $("input").keyup(function(){
-                    var value = $(this).val();
-                    var valueFound = false;
+                $("input").keyup(function(valuefound){
+                   var value = $(this).val();
+                   var valueFound = false;
                     if(value.length >= 2){
                         _.forEach(codedAnswersNames, function(answer){
-                            if(answer.toLowerCase().indexOf(value) != -1){
-                                valueFound = true;
-                                return valueFound;
+                            if(answer.toLowerCase().indexOf(value.toLowerCase()) != -1){
+                                valueFound=true;
+                                return;
                             }
                         });
                         if(valueFound == false){
                             $('.token-input-list-facebook').addClass('illegalValue');
+                            $('input').on('blur', function() {
+                                $('.token-input-list-facebook').removeClass('illegalValue');
+                            });
                         }
                     }
                     if(value == ''  || valueFound == true ) {
