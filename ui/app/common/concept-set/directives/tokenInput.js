@@ -32,6 +32,7 @@ angular.module('bahmni.common.conceptSet')
                     minChars : 2,
                     tokenLimit : scope.multiSelect ? null : 1,
                     onAdd : function(item){
+                        $(this).closest('.dautocomplete').hasClass('illegalValue') ? $(this).closest('.dautocomplete').removeClass('illegalValue') : null ;
                         unselectedValues = _.pullAllBy(unselectedValues, [{"uuid" : item.uuid}], 'uuid');
                         unselectedValuesNames = _.map(unselectedValues,"displayString");
                         scope.observation.toggleSelection(item);
@@ -62,14 +63,14 @@ angular.module('bahmni.common.conceptSet')
                             }
                         });
                         if(valueFound == false){
-                            $('.token-input-list-facebook').addClass('illegalValue');
+                            $(this).closest('.dautocomplete').addClass('illegalValue');
                             $('input').on('blur', function() {
-                                $('.token-input-list-facebook').removeClass('illegalValue');
+                                $(this).closest('.dautocomplete').hasClass('illegalValue') ? $(this).closest('.dautocomplete').removeClass('illegalValue') : null ;
                             });
                         }
                     }
                     if(value == ''  || valueFound == true ) {
-                        $('.token-input-list-facebook').removeClass('illegalValue');
+                        $(this).closest('.dautocomplete').hasClass('illegalValue') ? $(this).closest('.dautocomplete').removeClass('illegalValue') : null ;
                     }
 
                 })
