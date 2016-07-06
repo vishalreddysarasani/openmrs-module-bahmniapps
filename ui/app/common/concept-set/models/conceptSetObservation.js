@@ -8,6 +8,14 @@ Bahmni.ConceptSet.Observation = function (observation, savedObs, conceptUIConfig
     this.uniqueId = _.uniqueId('observation_');
     this.erroneousValue = null;
 
+
+    this.validateObservation = function(conceptSetRequired){
+        if (conceptSetRequired && !this.atLeastOneValueSet()) {
+            return false;
+        }
+        return true;
+    };
+
     if (savedObs) {
         this.uuid = savedObs.uuid;
         this.value = savedObs.value;

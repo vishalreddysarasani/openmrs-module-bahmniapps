@@ -246,4 +246,12 @@ Bahmni.ConceptSet.MultiSelectObservation = function (concept, memberOfCollection
         return this.getDataTypeName() === "Coded";
     };
 
+    this.validateObservation = function (conceptSetRequired) {
+        if (conceptSetRequired && !this.atLeastOneValueSet()) {
+            return false;
+        }
+        return true;
+    }
+    
+
 };

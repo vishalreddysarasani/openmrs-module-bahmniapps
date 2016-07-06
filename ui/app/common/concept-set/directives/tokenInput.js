@@ -32,10 +32,10 @@ angular.module('bahmni.common.conceptSet')
                     minChars : 2,
                     tokenLimit : scope.multiSelect ? null : 1,
                     onAdd : function(item){
-                        $(this).closest('.dautocomplete').hasClass('illegalValue') ? $(this).closest('.dautocomplete').removeClass('illegalValue') : null ;
                         unselectedValues = _.pullAllBy(unselectedValues, [{"uuid" : item.uuid}], 'uuid');
                         unselectedValuesNames = _.map(unselectedValues,"displayString");
                         scope.observation.toggleSelection(item);
+                        scope.observation.validateObservation(scope.conceptSetRequired) ?  $(this).closest('.singleautocomplete').removeClass('illegalValue') : $(this).closest('.singleautocomplete').addClass('illegalValue');
                         if (scope.$parent.observation && typeof scope.$parent.observation.onValueChanged == 'function') {
                             scope.$parent.observation.onValueChanged();
                         }
@@ -45,6 +45,7 @@ angular.module('bahmni.common.conceptSet')
                         unselectedValues.push(item);
                         unselectedValuesNames.push(item.displayString);
                         scope.observation.toggleSelection(item);
+                        scope.observation.validateObservation(scope.conceptSetRequired) ?  $(this).closest('.singleautocomplete').removeClass('illegalValue') : $(this).closest('.singleautocomplete').addClass('illegalValue');
                         if (scope.$parent.observation && typeof scope.$parent.observation.onValueChanged == 'function') {
                             scope.$parent.observation.onValueChanged();
                         }
@@ -63,14 +64,14 @@ angular.module('bahmni.common.conceptSet')
                             }
                         });
                         if(valueFound == false){
-                            $(this).closest('.dautocomplete').addClass('illegalValue');
+                            $(this).closest('.singleautocomplete').addClass('illegalValue');
                             $('input').on('blur', function() {
-                                $(this).closest('.dautocomplete').hasClass('illegalValue') ? $(this).closest('.dautocomplete').removeClass('illegalValue') : null ;
+                                $(this).closest('.singleautocomplete').hasClass('illegalValue') ? $(this).closest('.singleautocomplete').removeClass('illegalValue') : null ;
                             });
                         }
                     }
                     if(value == ''  || valueFound == true ) {
-                        $(this).closest('.dautocomplete').hasClass('illegalValue') ? $(this).closest('.dautocomplete').removeClass('illegalValue') : null ;
+                        $(this).closest('.singleautocomplete').hasClass('illegalValue') ? $(this).closest('.singleautocomplete').removeClass('illegalValue') : null ;
                     }
 
                 })
@@ -78,7 +79,8 @@ angular.module('bahmni.common.conceptSet')
             scope: {
                 observation: '=',
                 codedAnswers : '=',
-                multiSelect: '='
+                multiSelect: '=',
+                conceptSetRequired: '='
             }
         };
 

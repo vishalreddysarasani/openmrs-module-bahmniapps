@@ -61,12 +61,12 @@
                         <div ng-include src="'../common/concept-set/views/observationDataTypes/buttonSelectType.html'"></div>
                     </div>
 
-                    <div ng-switch-when="autocompleteMultiSelect" class="dautocomplete autocompleteMultiSelect" ng-class="{'illegalValue': !observation.isValid(atLeastOneValueIsSet, conceptSetRequired)}">
-                        <input type="text" class="form-control" observation="observation" coded-answers="observation.getPossibleAnswers()" multi-select="true" token-input/>
+                    <div ng-switch-when="autocompleteMultiSelect" class="singleautocomplete autocompleteMultiSelect" ng-class="{'illegalValue': !observation.isValid(atLeastOneValueIsSet, conceptSetRequired)}">
+                        <input type="text" class="form-control" observation="::observation" coded-answers="::observation.getPossibleAnswers()" concept-set-required="::observation.isRequired()"  multi-select="::true" token-input/>
                     </div>
 
-                    <div ng-switch-when="autocomplete" class="dautocomplete" ng-class="{'illegalValue': !observation.isValid(atLeastOneValueIsSet, conceptSetRequired)}">
-                        <input type="text" class="form-control" observation="observation" coded-answers="observation.getPossibleAnswers()" multi-select="false" token-input />
+                    <div ng-switch-when="autocomplete" class="singleautocomplete" ng-class="{'illegalValue': !observation.isValid(atLeastOneValueIsSet, conceptSetRequired)}">
+                        <input type="text" class="form-control" observation="::observation" coded-answers="::observation.getPossibleAnswers()"  concept-set-required="::observation.isRequired()"  multi-select="::false" token-input />
                     </div>
 
                     <p ng-switch-default class="field-value info fa fa-info-sign"> The concept data type
@@ -220,12 +220,12 @@
                         </concept-dropdown>
                     </div>
 
-                    <div ng-switch-when="autocompleteMultiSelect" class="dautocomplete autocompleteMultiSelect" ng-class="{'illegalValue': !observation.isValid(atLeastOneValueIsSet, conceptSetRequired)}">
-                        <input  type="text" class="form-control" observation="observation" coded-answers="observation.getPossibleAnswers()" multi-select="true" token-input />
+                    <div ng-switch-when="autocompleteMultiSelect" class="singleautocomplete autocompleteMultiSelect" ng-class="{'illegalValue': !observation.isValid(atLeastOneValueIsSet, conceptSetRequired)}">
+                        <input  type="text" class="form-control" observation="::observation" coded-answers="::observation.getPossibleAnswers()" concept-set-required="::observation.isRequired()" multi-select="::true" token-input />
                     </div>
 
-                    <div ng-switch-when="autocomplete" class="dautocomplete" ng-class="{'illegalValue': !observation.isValid(atLeastOneValueIsSet, conceptSetRequired)}">
-                        <input type="text" class="form-control" observation="observation" coded-answers="observation.getPossibleAnswers()" multi-select="false" token-input/>
+                    <div ng-switch-when="autocomplete" class="singleautocomplete" ng-class="{'illegalValue': !observation.isValid(atLeastOneValueIsSet, conceptSetRequired)}">
+                        <input type="text" class="form-control" observation="::observation" coded-answers="::observation.getPossibleAnswers()" concept-set-required="::observation.isRequired()"  multi-select="::false" token-input/>
                     </div>
 
 
