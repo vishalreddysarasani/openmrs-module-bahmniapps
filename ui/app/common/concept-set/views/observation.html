@@ -221,7 +221,13 @@
                     </div>
 
                     <div ng-switch-when="autocompleteMultiSelect" class="singleautocomplete autocompleteMultiSelect" ng-class="{'illegalValue': !observation.isValid(atLeastOneValueIsSet, conceptSetRequired)}">
-                        <input  type="text" class="form-control" observation="::observation" coded-answers="::observation.getPossibleAnswers()" concept-set-required="::observation.isRequired()" multi-select="::true" token-input />
+                        <!--<input  type="text" class="form-control" observation="::observation" coded-answers="::observation.getPossibleAnswers()" concept-set-required="::observation.isRequired()" multi-select="::true" token-input />-->
+                        <tags-input ng-model="observation.selectedObs" display-property="displayString"
+                                    key-property = "displayString"
+                                    on-tag-added="observation.toggleSelection($tag)"
+                                    on-tag-removed="observation.toggleSelection($tag)"
+                                    add-from-autocomplete-only="true" source="observation.getPossibleAnswers" bahmni-autocomplete>
+                        </tags-input>
                     </div>
 
                     <div ng-switch-when="autocomplete" class="singleautocomplete" ng-class="{'illegalValue': !observation.isValid(atLeastOneValueIsSet, conceptSetRequired)}">
