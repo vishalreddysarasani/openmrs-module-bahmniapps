@@ -172,6 +172,7 @@ angular.module('bahmni.common.conceptSet')
                 }; //TODO: Write unit test for this function
 
                 var findInvalidNodes = function (members) {
+
                     var errorMessage = null;
                     var status = members.some(function (childNode) {
                         if (childNode.voided) {

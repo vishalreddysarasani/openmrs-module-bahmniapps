@@ -61,13 +61,33 @@
                         <div ng-include src="'../common/concept-set/views/observationDataTypes/buttonSelectType.html'"></div>
                     </div>
 
-                    <div ng-switch-when="autocompleteMultiSelect" class="singleautocomplete autocompleteMultiSelect" ng-class="{'illegalValue': !observation.isValid(atLeastOneValueIsSet, conceptSetRequired)}">
-                        <input type="text" class="form-control" observation="::observation" coded-answers="::observation.getPossibleAnswers()" concept-set-required="::observation.isRequired()"  multi-select="::true" token-input/>
+                    <div data-ng-controller="multiSelectObservationSearchController" ng-switch-when="autocompleteMultiSelect" class="singleautocomplete autocompleteMultiSelect" ng-class="{'illegalValue': !observation.isValid(atLeastOneValueIsSet, conceptSetRequired)}">
+                        <tags-input ng-model="values" display-property="label"
+                                    key-property = "name"
+                                    on-tag-adding="setLabel($tag)"
+                                    on-tag-added="observation.toggleSelection($tag)"
+                                    on-tag-removed="observation.toggleSelection($tag)"
+                                    add-from-autocomplete-only="true">
+                            <auto-complete source="search($query)" min-length="2"></auto-complete>
+                        </tags-input>
                     </div>
 
-                    <div ng-switch-when="autocomplete" class="singleautocomplete" ng-class="{'illegalValue': !observation.isValid(atLeastOneValueIsSet, conceptSetRequired)}">
-                        <input type="text" class="form-control" observation="::observation" coded-answers="::observation.getPossibleAnswers()"  concept-set-required="::observation.isRequired()"  multi-select="::false" token-input />
+                    <div ng-switch-when="autocomplete">
+                        <input ng-change="handleUpdate()"
+                               ng-disabled="observation.disabled"
+                               ng-model="observation.autocompleteValue"
+                               concept-autocomplete
+                               illegal-value = "!observation.isValid(atLeastOneValueIsSet,conceptSetRequired)"
+                               previous-value="observation.autocompleteValue"
+                               answers-concept-name="::observation.conceptUIConfig.answersConceptName"
+                               default-concept="::observation.concept"
+                               strict-select="true"
+                               ng-class="{
+                                    'computed-field': observation.isComputedAndEditable(),
+                                    'illegalValue': !observation.isValid(atLeastOneValueIsSet,conceptSetRequired)
+                               }"/>
                     </div>
+
 
                     <p ng-switch-default class="field-value info fa fa-info-sign"> The concept data type
                         '::{{observation.dataTypeName}}' is not supported yet.</p>
@@ -220,18 +240,33 @@
                         </concept-dropdown>
                     </div>
 
-                    <div ng-switch-when="autocompleteMultiSelect" class="singleautocomplete autocompleteMultiSelect" ng-class="{'illegalValue': !observation.isValid(atLeastOneValueIsSet, conceptSetRequired)}">
-                        <!--<input  type="text" class="form-control" observation="::observation" coded-answers="::observation.getPossibleAnswers()" concept-set-required="::observation.isRequired()" multi-select="::true" token-input />-->
-                        <tags-input ng-model="observation.selectedObs" display-property="displayString"
-                                    key-property = "displayString"
+                    <div data-ng-controller="multiSelectObservationSearchController" ng-switch-when="autocompleteMultiSelect" class="singleautocomplete autocompleteMultiSelect" ng-class="{'illegalValue': !observation.isValid(atLeastOneValueIsSet, conceptSetRequired)}">
+                        <tags-input ng-model="values" display-property="label"
+                                    ng-blur="validate()"
+                                    key-property = "name"
+                                    on-tag-adding="setLabel($tag)"
+                                    add-on-blur="false"
                                     on-tag-added="observation.toggleSelection($tag)"
                                     on-tag-removed="observation.toggleSelection($tag)"
-                                    add-from-autocomplete-only="true" source="observation.getPossibleAnswers" bahmni-autocomplete>
+                                    add-from-autocomplete-only="true">
+                            <auto-complete source="search($query)" min-length="2"></auto-complete>
                         </tags-input>
                     </div>
 
-                    <div ng-switch-when="autocomplete" class="singleautocomplete" ng-class="{'illegalValue': !observation.isValid(atLeastOneValueIsSet, conceptSetRequired)}">
-                        <input type="text" class="form-control" observation="::observation" coded-answers="::observation.getPossibleAnswers()" concept-set-required="::observation.isRequired()"  multi-select="::false" token-input/>
+                    <div ng-switch-when="autocomplete">
+                        <input ng-change="handleUpdate()"
+                               ng-disabled="observation.disabled"
+                               ng-model="observation.autocompleteValue"
+                               concept-autocomplete
+                               illegal-value = "!observation.isValid(atLeastOneValueIsSet,conceptSetRequired)"
+                               previous-value="observation.autocompleteValue"
+                               answers-concept-name="::observation.conceptUIConfig.answersConceptName"
+                               default-concept="::observation.concept"
+                               strict-select="true"
+                               ng-class="{
+                                    'computed-field': observation.isComputedAndEditable(),
+                                    'illegalValue': !observation.isValid(atLeastOneValueIsSet,conceptSetRequired)
+                               }"/>
                     </div>
 
 
