@@ -102,10 +102,8 @@ Bahmni.ConceptSet.MultiSelectObservation = function (concept, memberOfCollection
 
     this.getControlType = function(){
         var conceptConfig = this.getConceptUIConfig();
-        if(conceptConfig.autocomplete === true && conceptConfig.multiSelect === true)
+        if(conceptConfig.autocomplete === true && conceptConfig.multiSelect === true && _.isUndefined(conceptConfig.nonCodedConceptName))
             return "autocompleteMultiSelect";
-        // else if(conceptConfig.autocomplete == true && !conceptConfig.multiSelect)
-        //     return "autocomplete";
         return  "buttonselect";
     };
 
@@ -130,7 +128,7 @@ Bahmni.ConceptSet.MultiSelectObservation = function (concept, memberOfCollection
             });
         }
         return hasNonVoidedValue;
-    }
+    };
 
     this.isValid = function (checkRequiredFields, conceptSetRequired) {
         if(this.error) {
