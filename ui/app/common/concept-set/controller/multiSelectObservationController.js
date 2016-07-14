@@ -70,7 +70,7 @@ angular.module('bahmni.common.conceptSet').controller('multiSelectObservationSea
         return true;
     };
 
-    $scope.validate = function () {
+    $scope.removeFreeTextItem = function () {
         var value = $("input.input").val();
         if (_.isEmpty($scope.search(value))) {
             $("input.input").val("");

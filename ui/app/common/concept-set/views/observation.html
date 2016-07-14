@@ -63,10 +63,11 @@
 
                     <div data-ng-controller="multiSelectObservationSearchController" ng-switch-when="autocompleteMultiSelect" class="singleautocomplete autocompleteMultiSelect" ng-class="{'illegalValue': !observation.isValid(atLeastOneValueIsSet, conceptSetRequired)}">
                         <tags-input ng-model="values" display-property="label"
+                                    ng-blur="removeFreeTextItem()"
                                     key-property = "name"
                                     on-tag-adding="setLabel($tag)"
-                                    on-tag-added="observation.toggleSelection($tag)"
-                                    on-tag-removed="observation.toggleSelection($tag)"
+                                    on-tag-added="addItem($tag)"
+                                    on-tag-removed="removeItem($tag)"
                                     add-from-autocomplete-only="true">
                             <auto-complete source="search($query)" min-length="2"></auto-complete>
                         </tags-input>
@@ -242,7 +243,7 @@
 
                     <div data-ng-controller="multiSelectObservationSearchController" ng-switch-when="autocompleteMultiSelect" class="singleautocomplete autocompleteMultiSelect" ng-class="{'illegalValue': !observation.isValid(atLeastOneValueIsSet, conceptSetRequired)}">
                         <tags-input ng-model="values" display-property="label"
-                                    ng-blur="validate()"
+                                    ng-blur="removeFreeTextItem()"
                                     key-property = "name"
                                     on-tag-adding="setLabel($tag)"
                                     on-tag-added="addItem($tag)"
