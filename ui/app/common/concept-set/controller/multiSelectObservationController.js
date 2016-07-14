@@ -74,7 +74,6 @@ angular.module('bahmni.common.conceptSet').controller('multiSelectObservationSea
         var value = $("input.input").val();
         if (_.isEmpty($scope.search(value))) {
             $("input.input").val("");
-            $($('tags-input')[0]).removeClass('ng-invalid');
         }
     };
 
