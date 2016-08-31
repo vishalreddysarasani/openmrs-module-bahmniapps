@@ -1,0 +1,21 @@
+<section class="dashboard-tabular-obs-section dashboard-section dst-results" id="tabular-obs">
+    <div>
+        <h2 class="section-title">{{section | titleTranslate}}</h2>
+
+        <section class="tabular-obs">
+            <table>
+                <tr>
+                    <th> </th>
+                    <th ng-repeat="header in flowsheetHeader">
+                        {{header}}
+                        <hint concept-details="header"/>
+                    </th>
+                </tr>
+                <tr ng-repeat="row in flowsheetDataKeys">
+                    <td>{{ row }}</td>
+                    <td ng-repeat="data in flowsheetData[row] track by $index">{{ data }} </td>
+                </tr>
+            </table>
+        </section>
+    </div>
+</section>
