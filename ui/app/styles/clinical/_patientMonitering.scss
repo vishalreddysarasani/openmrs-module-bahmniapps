@@ -1,0 +1,40 @@
+.patient-monitering{
+  overflow: auto;
+  table{
+    border-spacing:2px;
+    border-collapse: separate;
+      tr{
+        border-bottom: 0;
+        td,th{
+          border:0;
+          padding: 10px;
+        }
+        th{
+          font-family: $OpenSansFont;
+          background: #d6d6d6;
+          &.current-month{
+            background:#9a9a9a ;
+            color: $white;
+          }
+        }
+        td{
+          &.results{
+            background: #efefef;
+            &.results-green{
+              background: #9ed016;
+            }
+            &.results-purple{
+              background: #9551b2;
+            }
+            &.results-yellow{
+              background: #f0f078;
+            }
+            &.results-current{
+              background: #d9d966;
+            }
+          }
+
+        }
+      }
+  }
+}
