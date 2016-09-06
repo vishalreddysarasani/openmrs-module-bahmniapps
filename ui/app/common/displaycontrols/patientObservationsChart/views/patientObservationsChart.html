@@ -1,20 +1,28 @@
 <section class="dashboard-tabular-obs-section" id="tabular-obs">
     <div>
         <h2 class="section-title">{{section | titleTranslate}}</h2>
-
         <section class="patient-monitering">
+            <div class="legends">
+                Legends : <span class="legends-color">Current Month </span>
+                <span class="legends-color legends-yellow"> Planned monitoring schedule </span>
+                <span class="legends-color legends-green"> Date added </span>
+                <span class="legends-color legends-purple">Pending data entry </span>
+                <span>B: Baseline</span>
+                <span>M: Month </span>
+                <span>ET: End of treatment </span>
+                <span>PT: Post treatment</span>
+            </div>
             <table>
                 <tr>
                     <th> </th>
-                    <th ng-repeat="header in flowsheetHeader" ng-class="{'current-month'== true}">
+                    <th ng-repeat="header in flowsheetHeader">
                         {{header}}
                         <hint concept-details="header"/>
                     </th>
                 </tr>
                 <tr ng-repeat="row in flowsheetDataKeys">
                     <td >{{ row }}</td>
-                    <td ng-repeat="data in flowsheetData[row] track by $index" class="results" ng-class="{'results-green': data == true ,'results-purple': data == false ,'results-current'
-                    : header == september ,'results-yellow' : header == true}">{{ data }} </td>
+                    <td ng-repeat="data in flowsheetData[row] track by $index" class="results results-{{data}}"> </td>
                 </tr>
 
             </table>

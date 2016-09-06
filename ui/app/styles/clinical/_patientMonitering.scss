@@ -1,5 +1,40 @@
 .patient-monitering{
   overflow: auto;
+  .legends{
+    margin:10px;
+    padding: 10px;
+    width:auto;
+    float: right;
+    border: 1px solid $darkerGrey;
+    span{
+      padding:0 5px;
+      font-family: $OpenSansFont;
+      font-size: 12px;
+      &.legends-color{
+        padding-left: 25px;
+        position:relative;
+        &:before{
+          content: "";
+          position: absolute;
+          width: 15px;
+          height: 15px;
+          background: #d6d6d6;
+          left: 5px;
+          top: 1px;
+        }
+        &.legends-yellow:before{
+          background: #f0f078;
+        }
+        &.legends-green:before{
+          background: #9ed016;
+        }
+        &.legends-purple:before{
+          background: #9551b2;
+        }
+      }
+
+    }
+  }
   table{
     border-spacing:2px;
     border-collapse: separate;

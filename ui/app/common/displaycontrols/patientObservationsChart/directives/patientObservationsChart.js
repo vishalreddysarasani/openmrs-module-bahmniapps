@@ -10,7 +10,7 @@ angular.module('bahmni.common.displaycontrol.patientObservationsChart').directiv
                     $scope.flowsheetData = data.flowsheetData;
                     $scope.flowsheetDataKeys = Object.keys($scope.flowsheetData);
                 })
-            }
+            };
 
             var init = function () {
                 return $q.all([getPatientObservationChartData()]).then(function () {
