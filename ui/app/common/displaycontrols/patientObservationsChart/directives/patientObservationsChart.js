@@ -5,7 +5,8 @@ angular.module('bahmni.common.displaycontrol.patientObservationsChart').directiv
         var link = function ($scope) {
 
             var getPatientObservationChartData = function () {
-                return observationsService.fetchPatientObservationsChartData("123").success(function (data) {
+
+                return observationsService.fetchPatientObservationsChartData($scope.patient.uuid, $scope.enrollment).success(function (data) {
                     $scope.flowsheetHeader = data.flowsheetHeader;
                     $scope.flowsheetData = data.flowsheetData;
                     $scope.flowsheetDataKeys = Object.keys($scope.flowsheetData);
@@ -23,7 +24,9 @@ angular.module('bahmni.common.displaycontrol.patientObservationsChart').directiv
             restrict: 'E',
             link: link,
             scope: {
-                section: "="
+                section: "=",
+                patient: "=",
+                enrollment: "@"
             },
             templateUrl: "../common/displaycontrols/patientObservationsChart/views/patientObservationsChart.html"
         };
