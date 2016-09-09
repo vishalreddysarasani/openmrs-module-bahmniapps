@@ -10,6 +10,7 @@ angular.module('bahmni.common.displaycontrol.patientObservationsChart').directiv
                     $scope.flowsheetHeader = data.flowsheetHeader;
                     $scope.flowsheetData = data.flowsheetData;
                     $scope.flowsheetDataKeys = Object.keys($scope.flowsheetData);
+                    $scope.highlightedColumnIndex = data.flowsheetHeader.indexOf(data.currentMilestoneName);
                 })
             };
 

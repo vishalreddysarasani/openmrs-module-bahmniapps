@@ -13,16 +13,17 @@
                     <table>
                         <tr>
                             <th class="monitoring-fixed-column"> </th>
-                            <th ng-repeat="header in flowsheetHeader">
+                            <th ng-repeat="header in flowsheetHeader"
+                                ng-class="{'monitoring-results—-current': ($index == $scope.highlightedColumnIndex)}">
                                 {{header}}
                                 <hint concept-details="header"/>
                             </th>
                         </tr>
                         <tr ng-repeat="row in flowsheetDataKeys">
                             <td class="monitoring-fixed-column">{{ row }}</td>
-                            <td ng-repeat="data in flowsheetData[row] track by $index" class="monitoring-results monitoring-results--{{data}}"> </td>
+                            <td ng-repeat="data in flowsheetData[row] track by $index" class="monitoring-results monitoring-results--{{data}}"
+                                ng-class="{'monitoring-results—-current': ($index == $scope.highlightedColumnIndex)}"></td> </td>
                         </tr>
-
                     </table>
                 </div>
             </div>
