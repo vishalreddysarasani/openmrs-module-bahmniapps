@@ -1,5 +1,4 @@
 .patient-monitering{
-  overflow: auto;
   .legends{
     margin:10px;
     padding: 10px;
@@ -35,41 +34,76 @@
 
     }
   }
-  table{
-    border-spacing:2px;
-    border-collapse: separate;
-      tr{
+  .monitoring-table-wrap{
+    width: 100%;
+    position: relative;
+    clear: both;
+    overflow: hidden;
+  }
+  .monitoring-table-scroll {
+    width: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+    margin-left:298px;
+    table {
+      border-spacing: 2px;
+      border-collapse: separate;
+      tr {
         border-bottom: 0;
-        td,th{
-          border:0;
+        td, th {
+          border: 0;
           padding: 10px;
+          height: 17px;
+          &.monitoring-fixed-column{
+            position:absolute;
+            left:0;
+            width:300px;
+            height: auto;
+            background: #d6d6d6;
+            box-sizing: border-box;
+            height:37px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
         }
-        th{
+        th {
           font-family: $OpenSansFont;
           background: #d6d6d6;
-          &.current-month{
-            background:#9a9a9a ;
+          &.current-month {
+            background: #9a9a9a;
             color: $white;
           }
         }
-        td{
-          &.results{
-            background: #efefef;
-            &.results-green{
+        td {
+          &.monitoring-results {
+            background: #dddbdb;
+            &--green {
               background: #9ed016;
             }
-            &.results-purple{
+            &--purple {
               background: #9551b2;
             }
-            &.results-yellow{
+            &--yellow {
               background: #f0f078;
             }
-            &.results-current{
-              background: #d9d966;
+            &--current {
+              position: relative;
+              &:before {
+                content: "";
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                background: rgba(154, 154, 154, 0.4);
+                z-index: 999999;
+                left: 0;
+                top: 0;
+              }
             }
           }
 
         }
       }
+    }
   }
 }
