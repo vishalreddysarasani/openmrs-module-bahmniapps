@@ -15,7 +15,6 @@
         "forms",
         "observationGraph",
         "obsToObsFlowSheet",
-        "patientObservationsChart",
         "pacsOrders",
         "patientInformation"
     ];

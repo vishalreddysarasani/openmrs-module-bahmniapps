@@ -117,7 +117,6 @@ Bahmni.Common = Bahmni.Common || {};
         idgenConfigurationURL: RESTWS_V1 + "/idgen/identifiertype",
         bahmniRESTBaseURL: BAHMNI_CORE + "",
         observationsUrl: BAHMNI_CORE + "/observations",
-        patientObservationsChartUrl: RESTWS_V1 + "/endtb/patientFlowsheet" ,
         obsRelationshipUrl: BAHMNI_CORE + "/obsrelationships",
         encounterImportUrl: BAHMNI_CORE + "/admin/upload/encounter",
         programImportUrl: BAHMNI_CORE + "/admin/upload/program",

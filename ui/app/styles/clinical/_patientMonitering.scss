@@ -75,7 +75,7 @@
             color: $white;
           }
         }
-        td {
+        td,th {
           &.monitoring-results {
             background: #dddbdb;
             &--green {
@@ -88,7 +88,8 @@
               background: #f0f078;
             }
             &--current {
-              position: relative;
+              //position: relative;
+              background: rgba(154, 154, 154, 0.4);
               &:before {
                 content: "";
                 position: absolute;
