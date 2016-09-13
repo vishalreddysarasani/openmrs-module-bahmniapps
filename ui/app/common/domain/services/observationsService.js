@@ -48,13 +48,6 @@ angular.module('bahmni.common.domain')
             });
         };
 
-        this.fetchPatientMonitoringChartData = function(url, patientUuid, programUuid) {
-            return $http.get(url, {
-                params: {patientUuid: patientUuid, programUuid: programUuid},
-                withCredentials: true
-            });
-        };
-
         this.getObsRelationship = function (targetObsUuid) {
             return $http.get(Bahmni.Common.Constants.obsRelationshipUrl, {
                 params: {
